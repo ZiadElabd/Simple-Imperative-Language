@@ -87,3 +87,13 @@ command():
 }
 
 
+Num():
+{
+	< DIGIT > (Num())*
+}
+Var():
+{
+	< LETTER > (Var())*
+}
+
+
