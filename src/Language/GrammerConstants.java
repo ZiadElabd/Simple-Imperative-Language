@@ -31,25 +31,21 @@ public interface GrammerConstants {
   /** RegularExpression Id. */
   int DIGIT = 14;
   /** RegularExpression Id. */
-  int VAR = 15;
+  int TF = 15;
   /** RegularExpression Id. */
-  int NUMBER = 16;
+  int PLUS = 16;
   /** RegularExpression Id. */
-  int TF = 17;
+  int MINUS = 17;
   /** RegularExpression Id. */
-  int PLUS = 18;
+  int COMPARE = 18;
   /** RegularExpression Id. */
-  int MINUS = 19;
+  int NOT = 19;
   /** RegularExpression Id. */
-  int COMPARE = 20;
+  int EQUAL = 20;
   /** RegularExpression Id. */
-  int NOT = 21;
+  int ASSIGHN = 21;
   /** RegularExpression Id. */
-  int EQUAL = 22;
-  /** RegularExpression Id. */
-  int ASSIGHN = 23;
-  /** RegularExpression Id. */
-  int AND = 24;
+  int AND = 22;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -71,8 +67,6 @@ public interface GrammerConstants {
     "\"do\"",
     "<LETTER>",
     "<DIGIT>",
-    "<VAR>",
-    "<NUMBER>",
     "<TF>",
     "\"+\"",
     "\"-\"",

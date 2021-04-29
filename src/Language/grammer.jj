@@ -1,13 +1,13 @@
 PARSER_BEGIN(Grammer)
 package Language;
 
-import java.io.StringReader;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class Grammer {
   
     public static void main(String[] args) throws Exception {
-      FileReader in = new FileReader("read.txt");
+      BufferedReader in = new BufferedReader(new FileReader("read.txt"));
       Grammer grammer=new Grammer(in);
       Grammer.parse();
     }
@@ -51,10 +51,6 @@ TOKEN : /* identifiers */
     |
     <DIGIT: (["0"-"9"])+ > 
   	|
-  	< VAR: <LETTER> (<LETTER>)* >
-    |
-    < NUMBER: <DIGIT> (<DIGIT>)* >
-  	|
   	< TF: "tt" | "ff" > 
 }
 
@@ -94,22 +90,24 @@ void parse():
 }*/
 
 
-void NUM(): { }
+void NUM():
+{}
 {
- <DIGIT> [NUM()]
-
+	<DIGIT> [NUM()]
 }
 
 
 
-void VAR(): { }
+void VAR():
+{}
 {
-  <LETTER >[VAR()] 
+	<LETTER >[VAR()] 
 }
 
 
 
-void AEXp(): { }
+void AEXp():
+{}
 {
    NUM() 
   | 
