@@ -42,16 +42,13 @@ TOKEN : /* keywords */
     < WHILE: "while" >
     |
     < DO: "do" >
-  	|
-  	< SKIP: "skip" > 
-
 }
 
 TOKEN : /* identifiers */
 {
-    < #LETTER: [ "a"-"f"] >
+    < LETTER: [ "a"-"f"] >
     |
-    < #DIGIT: [ "0"-"9" ] >
+    < DIGIT: [ "0"-"9" ] >
 }
 
 
@@ -74,18 +71,14 @@ TOKEN : /* operators */
 
 void parse():
 {
-	command() <EOF>
+	Num() <EOF>
 }
 
 command():
 {
-	< SKIP >
-	|
-	command() < SEMICOLON > command()
-	|
+	command() (< SEMICOLON > command())*
 	 
 }
-
 
 Num():
 {
@@ -93,7 +86,29 @@ Num():
 }
 Var():
 {
-	< LETTER > (Var())*
+	<LETTER> (Var())*
 }
-
-
+//AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
+AEXp(): {
+   Num()
+  | 
+   Var()
+  |
+  <LPAREN> (AEXp() < PLUS> AEXp())  < RPAREN>
+  |
+  <LPAREN> (AEXp() < MINUS> AEXp()) <RPAREN> 
+ }
+//BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
+BExp():
+{
+  "tt"
+  | 
+  "ff"
+  |
+   <LPAREN> (AEXp() < COMPARE> AEXp())  < RPAREN>
+  |
+   <LPAREN> (AEXp() <AND> AEXp())  < RPAREN>
+  |
+  
+  <NOT> BExp()
+}
