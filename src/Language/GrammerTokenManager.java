@@ -19,15 +19,15 @@ private static final int jjStopStringLiteralDfa_0(int pos, long active0)
          if ((active0 & 0x41400L) != 0L)
          {
             jjmatchedKind = 13;
-            return 1;
+            return 8;
          }
          return -1;
       case 1:
          if ((active0 & 0x40000L) != 0L)
          {
-            jjmatchedKind = 15;
+            jjmatchedKind = 13;
             jjmatchedPos = 1;
-            return 1;
+            return 9;
          }
          if ((active0 & 0x400L) != 0L)
          {
@@ -131,7 +131,7 @@ static private int jjMoveStringLiteralDfa1_0(long active0)
          if ((active0 & 0x100L) != 0L)
             return jjStopAtPos(1, 8);
          else if ((active0 & 0x40000L) != 0L)
-            return jjStartNfaWithStates_0(1, 15, 1);
+            return jjStartNfaWithStates_0(1, 13, 9);
          break;
       case 104:
          return jjMoveStringLiteralDfa2_0(active0, 0xa00L);
@@ -229,7 +229,7 @@ static private int jjStartNfaWithStates_0(int pos, int kind, int state)
 static private int jjMoveNfa_0(int startState, int curPos)
 {
    int startsAt = 0;
-   jjnewStateCnt = 4;
+   jjnewStateCnt = 8;
    int i = 1;
    jjstateSet[0] = startState;
    int kind = 0x7fffffff;
@@ -249,14 +249,28 @@ static private int jjMoveNfa_0(int startState, int curPos)
                      break;
                   if (kind > 14)
                      kind = 14;
-                  jjCheckNAdd(3);
+                  jjCheckNAddTwoStates(5, 6);
                   break;
-               case 3:
+               case 5:
+                  if ((0x3ff000000000000L & l) == 0L)
+                     break;
+                  if (kind > 14)
+                     kind = 14;
+                  jjCheckNAdd(5);
+                  break;
+               case 6:
                   if ((0x3ff000000000000L & l) == 0L)
                      break;
                   if (kind > 16)
                      kind = 16;
-                  jjCheckNAdd(3);
+                  jjCheckNAddTwoStates(7, 6);
+                  break;
+               case 7:
+                  if ((0x3ff000000000000L & l) == 0L)
+                     break;
+                  if (kind > 16)
+                     kind = 16;
+                  jjCheckNAdd(7);
                   break;
                default : break;
             }
@@ -269,19 +283,67 @@ static private int jjMoveNfa_0(int startState, int curPos)
          {
             switch(jjstateSet[--i])
             {
+               case 8:
+                  if ((0x7e00000000L & l) != 0L)
+                  {
+                     if (kind > 15)
+                        kind = 15;
+                     jjCheckNAddTwoStates(3, 2);
+                  }
+                  if ((0x7e00000000L & l) != 0L)
+                  {
+                     if (kind > 13)
+                        kind = 13;
+                     jjCheckNAdd(1);
+                  }
+                  break;
+               case 9:
+                  if ((0x7e00000000L & l) != 0L)
+                  {
+                     if (kind > 15)
+                        kind = 15;
+                     jjCheckNAddTwoStates(3, 2);
+                  }
+                  if ((0x7e00000000L & l) != 0L)
+                  {
+                     if (kind > 15)
+                        kind = 15;
+                     jjCheckNAdd(3);
+                  }
+                  if ((0x7e00000000L & l) != 0L)
+                  {
+                     if (kind > 13)
+                        kind = 13;
+                     jjCheckNAdd(1);
+                  }
+                  break;
                case 0:
+                  if ((0x7e00000000L & l) == 0L)
+                     break;
+                  if (kind > 13)
+                     kind = 13;
+                  jjCheckNAddTwoStates(1, 2);
+                  break;
+               case 1:
                   if ((0x7e00000000L & l) == 0L)
                      break;
                   if (kind > 13)
                      kind = 13;
                   jjCheckNAdd(1);
                   break;
-               case 1:
+               case 2:
                   if ((0x7e00000000L & l) == 0L)
                      break;
                   if (kind > 15)
                      kind = 15;
-                  jjCheckNAdd(1);
+                  jjCheckNAddTwoStates(3, 2);
+                  break;
+               case 3:
+                  if ((0x7e00000000L & l) == 0L)
+                     break;
+                  if (kind > 15)
+                     kind = 15;
+                  jjCheckNAdd(3);
                   break;
                default : break;
             }
@@ -306,7 +368,7 @@ static private int jjMoveNfa_0(int startState, int curPos)
          kind = 0x7fffffff;
       }
       ++curPos;
-      if ((i = jjnewStateCnt) == (startsAt = 4 - (jjnewStateCnt = startsAt)))
+      if ((i = jjnewStateCnt) == (startsAt = 8 - (jjnewStateCnt = startsAt)))
          return curPos;
       try { curChar = input_stream.readChar(); }
       catch(java.io.IOException e) { return curPos; }
@@ -332,8 +394,8 @@ static final long[] jjtoSkip = {
    0x1eL, 
 };
 static protected SimpleCharStream input_stream;
-static private final int[] jjrounds = new int[4];
-static private final int[] jjstateSet = new int[8];
+static private final int[] jjrounds = new int[8];
+static private final int[] jjstateSet = new int[16];
 static protected char curChar;
 /** Constructor. */
 public GrammerTokenManager(SimpleCharStream stream){
@@ -360,7 +422,7 @@ static private void ReInitRounds()
 {
    int i;
    jjround = 0x80000001;
-   for (i = 4; i-- > 0;)
+   for (i = 8; i-- > 0;)
       jjrounds[i] = 0x80000000;
 }
 

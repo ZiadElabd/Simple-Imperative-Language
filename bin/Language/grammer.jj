@@ -47,9 +47,9 @@ TOKEN : /* keywords */
 
 TOKEN : /* identifiers */
 {
-    < LETTER: [ "a"-"f"] >
+    <LETTER: (["a"-"f"])+ >
     |
-    < DIGIT: [ "0"-"9" ] >
+    <DIGIT: (["0"-"9"])+ > 
   	|
   	< VAR: <LETTER> (<LETTER>)* >
     |
@@ -96,11 +96,20 @@ void parse():
 }*/
 
 //AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
+void NUM(): { }
+{
+ <DIGIT> [NUM()]
+
+}
+void VAR(): { }
+{
+  <LETTER >[VAR()] 
+}
 void AEXp(): { }
 {
-   < NUMBER >
+   NUM() 
   | 
-   < VAR >
+   VAR() 
   |
   <LPAREN> (AEXp() sign() AEXp())+  < RPAREN>
   
@@ -128,7 +137,7 @@ void BExp(): { }
 }
 void select(): { }
 {
-  (AEXp() < COMPARE> AEXp())  < RPAREN>
+  AEXp() < COMPARE> AEXp()  < RPAREN>
  |
-  (BExp() <AND> BExp())  < RPAREN>
+  BExp() <AND> BExp()  < RPAREN>
 }
