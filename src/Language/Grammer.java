@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Grammer implements GrammerConstants {
 
     public static void main(String[] args) throws Exception {
-      Scanner scan = new Scanner("read.txt");
-      Grammer grammer=new Grammer(System.in);
+      FileReader in = new FileReader("read.txt");
+      Grammer grammer=new Grammer(in);
       Grammer.parse();
     }
 
@@ -26,8 +26,6 @@ public class Grammer implements GrammerConstants {
 	command() [< SEMICOLON > command())] 
 	 
 }*/
-
-//AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
   static final public void NUM() throws ParseException {
     jj_consume_token(DIGIT);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -108,18 +106,15 @@ public class Grammer implements GrammerConstants {
     }
   }
 
-//BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
   static final public void BExp() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case TRUE:
-      jj_consume_token(TRUE);
-      break;
-    case FALSE:
-      jj_consume_token(FALSE);
+    case TF:
+      jj_consume_token(TF);
       break;
     case LPAREN:
       jj_consume_token(LPAREN);
       select();
+      jj_consume_token(RPAREN);
       break;
     case NOT:
       jj_consume_token(NOT);
@@ -140,15 +135,12 @@ public class Grammer implements GrammerConstants {
       AEXp();
       jj_consume_token(COMPARE);
       AEXp();
-      jj_consume_token(RPAREN);
       break;
-    case TRUE:
-    case FALSE:
+    case TF:
     case NOT:
       BExp();
       jj_consume_token(AND);
       BExp();
-      jj_consume_token(RPAREN);
       break;
     default:
       jj_la1[6] = jj_gen;
@@ -173,7 +165,7 @@ public class Grammer implements GrammerConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x4000,0x2000,0x6020,0x6020,0x2380000,0x460020,0x466020,};
+      jj_la1_0 = new int[] {0x4000,0x2000,0x6020,0x6020,0x11c0000,0x220020,0x226020,};
    }
 
   /** Constructor with InputStream. */
@@ -311,7 +303,7 @@ public class Grammer implements GrammerConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[26];
+    boolean[] la1tokens = new boolean[25];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -325,7 +317,7 @@ public class Grammer implements GrammerConstants {
         }
       }
     }
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < 25; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Grammer {
   
     public static void main(String[] args) throws Exception {
-      Scanner scan = new Scanner("read.txt");
-      Grammer grammer=new Grammer(System.in);
+      FileReader in = new FileReader("read.txt");
+      Grammer grammer=new Grammer(in);
       Grammer.parse();
     }
     
@@ -55,9 +55,7 @@ TOKEN : /* identifiers */
     |
     < NUMBER: <DIGIT> (<DIGIT>)* >
   	|
-  	< TRUE: "tt" >
- 	|
- 	< FALSE: "ff" >  
+  	< TF: "tt" | "ff" > 
 }
 
 
@@ -95,16 +93,22 @@ void parse():
 	 
 }*/
 
-//AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
+
 void NUM(): { }
 {
  <DIGIT> [NUM()]
 
 }
+
+
+
 void VAR(): { }
 {
   <LETTER >[VAR()] 
 }
+
+
+
 void AEXp(): { }
 {
    NUM() 
@@ -124,20 +128,22 @@ void AEXp(): { }
  |
  <AND>
  }
-//BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
+
+
+
 void BExp(): { }
 {
-  < TRUE >
-  | 
-  < FALSE >
+  < TF >
   |
-   <LPAREN> select()
+   <LPAREN> select()  < RPAREN>
   | 
   <NOT> BExp()
 }
+
+
 void select(): { }
 {
-  AEXp() < COMPARE> AEXp()  < RPAREN>
+  AEXp() < COMPARE> AEXp()
  |
-  BExp() <AND> BExp()  < RPAREN>
+  BExp() <AND> BExp()
 }
