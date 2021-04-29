@@ -1,1 +1,4 @@
-aaz:=
+ a:=7;
+ a:=6
+ ;
+ if tt then 6:=a else skip

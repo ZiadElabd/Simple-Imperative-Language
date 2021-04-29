@@ -8,7 +8,7 @@ public class Grammer {
   
     public static void main(String[] args) throws Exception {
       BufferedReader in = new BufferedReader(new FileReader("read.txt"));
-      Grammer grammer=new Grammer(System.in);
+      Grammer grammer=new Grammer(in);
       Grammer.parse();
     }
     
@@ -43,6 +43,8 @@ TOKEN : /* keywords */
     < WHILE: "while" >
     |
     < DO: "do" >
+    |
+    < SKI:"skip" > 
 }
 
 TOKEN : /* identifiers */
@@ -51,7 +53,9 @@ TOKEN : /* identifiers */
     |
     <DIGIT: (["0"-"9"])+ > 
   	|
-  	< TF: "tt" | "ff" > 
+  	< t :"tt" >
+    | 
+  	< f: "ff" > 
 }
 
 
@@ -67,7 +71,7 @@ TOKEN : /* operators */
   	|
   	< EQUAL: "=" >
  	|
- 	< ASSIGHN: ":">
+ 	< ASSIGHN: ":=">
  	|
  	< AND: "^"> 
 }
@@ -76,18 +80,26 @@ void parse():
 {}
 {
   	{ System.out.println("presed");}
-	command()
+	Statement()  <EOF> 
 	{ System.out.println("parsed correctly");}
 }
 
+void Statement():
+{}
+{
+ command() (<SEMICOLON>  command())*
+  
+} 
 void command():
 {}
 {
-   "SKIP" skip()
+   < SKI > skip()
    |
-   [< SEMICOLON > command()]
+   VAR() <ASSIGHN> AEXp()
    |
-   VAR() <ASSIGHN> <EQUAL>AEXp() 
+   <IF>  IfStatement()
+   |
+   <WHILE> WhileStatement()
 }
 
 void skip():
@@ -119,7 +131,8 @@ void AEXp():
    VAR() 
   |
   <LPAREN> (AEXp() sign() AEXp())+  < RPAREN>
-  
+  | 
+  < SEMICOLON>  command()
  }
  void sign(): { }
  {
@@ -136,7 +149,9 @@ void AEXp():
 
 void BExp(): { }
 {
-  < TF >
+  < t >
+  |
+  < f >
   |
    <LPAREN> select()  < RPAREN>
   | 
@@ -150,3 +165,18 @@ void select(): { }
  |
   BExp() <AND> BExp()
 }
+
+void IfStatement() :
+{}
+{
+     BExp() <THEN> command()  <ELSE> command()
+   |
+   < SEMICOLON>  command()
+}
+
+void WhileStatement() :
+{}
+{
+     BExp() <DO> command()
+}
+
