@@ -75,6 +75,7 @@ public interface GrammerConstants {
     "\"=\"",
     "\":\"",
     "\"^\"",
+    "\"SKIP\"",
   };
 
 }

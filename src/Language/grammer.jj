@@ -76,20 +76,25 @@ void parse():
 {}
 {
   	{ System.out.println("presed");}
-	BExp()
+	command()
 	{ System.out.println("parsed correctly");}
 }
 
-/*void command():
+void command():
 {}
 {
-  	< SKIP >
- 	| 
-	command() [< SEMICOLON > command())] 
-	 
-}*/
+   "SKIP" skip()
+   |
+    [< SEMICOLON > command()]
+   |
+   VAR() <ASSIGHN> <EQUAL>AEXp() 
+}
 
-
+void skip():
+{}
+{
+ { return; }
+}
 void NUM():
 {}
 {
