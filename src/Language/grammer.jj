@@ -70,36 +70,41 @@ TOKEN : /* operators */
 }
 
 void parse():
+{}
 {
 	Num() <EOF>
 }
 
-command():
+/*void command():
+{}
 {
 	command() (< SEMICOLON > command())*
 	 
-}
+}*/
 
-Num():
+void Num():
+{}
 {
 	< DIGIT > (Num())*
 }
-Var():
+void Var():
+{}
 {
 	<LETTER> (Var())*
 }
 //AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
-AEXp(): {
+void AEXp(): { }
+{
    Num()
   | 
    Var()
   |
-  <LPAREN> (AEXp() < PLUS> AEXp())  < RPAREN>
+  <LPAREN> (AEXp() < PLUS> AEXp())+  < RPAREN>
   |
-  <LPAREN> (AEXp() < MINUS> AEXp()) <RPAREN> 
+  <LPAREN> (AEXp() < MINUS> AEXp())+ <RPAREN> 
  }
 //BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
-BExp():
+void BExp(): { }
 {
   "tt"
   | 

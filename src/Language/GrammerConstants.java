@@ -10,6 +10,40 @@ public interface GrammerConstants {
 
   /** End of File. */
   int EOF = 0;
+  /** RegularExpression Id. */
+  int LPAREN = 5;
+  /** RegularExpression Id. */
+  int RPAREN = 6;
+  /** RegularExpression Id. */
+  int SEMICOLON = 7;
+  /** RegularExpression Id. */
+  int IF = 8;
+  /** RegularExpression Id. */
+  int THEN = 9;
+  /** RegularExpression Id. */
+  int ELSE = 10;
+  /** RegularExpression Id. */
+  int WHILE = 11;
+  /** RegularExpression Id. */
+  int DO = 12;
+  /** RegularExpression Id. */
+  int LETTER = 13;
+  /** RegularExpression Id. */
+  int DIGIT = 14;
+  /** RegularExpression Id. */
+  int PLUS = 15;
+  /** RegularExpression Id. */
+  int MINUS = 16;
+  /** RegularExpression Id. */
+  int COMPARE = 17;
+  /** RegularExpression Id. */
+  int NOT = 18;
+  /** RegularExpression Id. */
+  int EQUAL = 19;
+  /** RegularExpression Id. */
+  int ASSIGHN = 20;
+  /** RegularExpression Id. */
+  int AND = 21;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -17,8 +51,29 @@ public interface GrammerConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
-    "\" { \"",
-    "\" }\"",
+    "\" \"",
+    "\"\\t\"",
+    "\"\\n\"",
+    "\"\\r\"",
+    "\"(\"",
+    "\")\"",
+    "\";\"",
+    "\"if\"",
+    "\"then\"",
+    "\"else\"",
+    "\"while\"",
+    "\"do\"",
+    "<LETTER>",
+    "<DIGIT>",
+    "\"+\"",
+    "\"-\"",
+    "\"==\"",
+    "\"!\"",
+    "\"=\"",
+    "\":\"",
+    "\"^\"",
+    "\"tt\"",
+    "\"ff\"",
   };
 
 }

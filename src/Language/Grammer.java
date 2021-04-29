@@ -8,14 +8,138 @@ public class Grammer implements GrammerConstants {
     public static void main(String[] args) throws Exception {
       StringReader in=new StringReader("count 10");
       Grammer grammer=new Grammer(System.in);
-      Grammer.words();
+      Grammer.parse();
     }
 
-  static final public void words() throws ParseException {
-  int id=0;
-  System.out.println(id+"id");
-    jj_consume_token(1);
-    jj_consume_token(2);
+  static final public void parse() throws ParseException {
+    Num();
+    jj_consume_token(0);
+  }
+
+/*void command():
+{}
+{
+	command() (< SEMICOLON > command())*
+	 
+}*/
+  static final public void Num() throws ParseException {
+    jj_consume_token(DIGIT);
+    label_1:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case DIGIT:
+        ;
+        break;
+      default:
+        jj_la1[0] = jj_gen;
+        break label_1;
+      }
+      Num();
+    }
+  }
+
+  static final public void Var() throws ParseException {
+    jj_consume_token(LETTER);
+    label_2:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case LETTER:
+        ;
+        break;
+      default:
+        jj_la1[1] = jj_gen;
+        break label_2;
+      }
+      Var();
+    }
+  }
+
+//AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
+  static final public void AEXp() throws ParseException {
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case DIGIT:
+      Num();
+      break;
+    case LETTER:
+      Var();
+      break;
+    case LPAREN:
+      jj_consume_token(LPAREN);
+      label_3:
+      while (true) {
+        AEXp();
+        jj_consume_token(PLUS);
+        AEXp();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case LPAREN:
+        case LETTER:
+        case DIGIT:
+          ;
+          break;
+        default:
+          jj_la1[2] = jj_gen;
+          break label_3;
+        }
+      }
+      jj_consume_token(RPAREN);
+      break;
+      jj_consume_token(LPAREN);
+      label_4:
+      while (true) {
+        AEXp();
+        jj_consume_token(MINUS);
+        AEXp();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case LPAREN:
+        case LETTER:
+        case DIGIT:
+          ;
+          break;
+        default:
+          jj_la1[3] = jj_gen;
+          break label_4;
+        }
+      }
+      jj_consume_token(RPAREN);
+      break;
+    default:
+      jj_la1[4] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+  }
+
+//BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
+  static final public void BExp() throws ParseException {
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case 22:
+      jj_consume_token(22);
+      break;
+    case 23:
+      jj_consume_token(23);
+      break;
+    case LPAREN:
+      jj_consume_token(LPAREN);
+      AEXp();
+      jj_consume_token(COMPARE);
+      AEXp();
+      jj_consume_token(RPAREN);
+      break;
+      jj_consume_token(LPAREN);
+      AEXp();
+      jj_consume_token(AND);
+      AEXp();
+      jj_consume_token(RPAREN);
+      break;
+    case NOT:
+      jj_consume_token(NOT);
+      BExp();
+      break;
+    default:
+      jj_la1[5] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
   }
 
   static private boolean jj_initialized_once = false;
@@ -28,13 +152,13 @@ public class Grammer implements GrammerConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[0];
+  static final private int[] jj_la1 = new int[6];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {};
+      jj_la1_0 = new int[] {0x4000,0x2000,0x6020,0x6020,0x6020,0xc40020,};
    }
 
   /** Constructor with InputStream. */
@@ -55,7 +179,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -69,7 +193,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -86,7 +210,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -96,7 +220,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -112,7 +236,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -121,7 +245,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 6; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -172,12 +296,12 @@ public class Grammer implements GrammerConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[3];
+    boolean[] la1tokens = new boolean[24];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 0; i++) {
+    for (int i = 0; i < 6; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -186,7 +310,7 @@ public class Grammer implements GrammerConstants {
         }
       }
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 24; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
