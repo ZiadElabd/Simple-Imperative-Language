@@ -2,11 +2,12 @@ PARSER_BEGIN(Grammer)
 package Language;
 
 import java.io.StringReader;
+import java.util.Scanner;
 
 public class Grammer {
   
     public static void main(String[] args) throws Exception {
-      StringReader in=new StringReader("count 10");
+      Scanner scan = new Scanner("read.txt");
       Grammer grammer=new Grammer(System.in);
       Grammer.parse();
     }
@@ -49,6 +50,10 @@ TOKEN : /* identifiers */
     < LETTER: [ "a"-"f"] >
     |
     < DIGIT: [ "0"-"9" ] >
+  	|
+  	< VAR: <LETTER> (<LETTER>)* >
+    |
+    < NUMBER: <DIGIT> (<DIGIT>)* > 
 }
 
 
@@ -72,7 +77,9 @@ TOKEN : /* operators */
 void parse():
 {}
 {
-	Num() <EOF>
+  	{ System.out.println("presed");}
+	< NUMBER >  < VAR >
+	{ System.out.println("parsed correctly");}
 }
 
 /*void command():
@@ -82,23 +89,12 @@ void parse():
 	 
 }*/
 
-void Num():
-{}
-{
-	< DIGIT > (Num())*
-	{ System.out.println("presed correctly");}
-}
-void Var():
-{}
-{
-	<LETTER> (Var())*
-}
 //AExp  →  Num | Var | (AExp + AExp) | (AExp −AExp)
 void AEXp(): { }
 {
-   Num()
+   < NUMBER >
   | 
-   Var()
+   < VAR >
   |
   <LPAREN> (AEXp() sign() AEXp())+  < RPAREN>
   
