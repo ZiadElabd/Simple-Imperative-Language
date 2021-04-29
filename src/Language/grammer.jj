@@ -86,6 +86,7 @@ void Num():
 {}
 {
 	< DIGIT > (Num())*
+	{ System.out.println("presed correctly");}
 }
 void Var():
 {}
@@ -99,9 +100,18 @@ void AEXp(): { }
   | 
    Var()
   |
-  <LPAREN> (AEXp() < PLUS> AEXp())+  < RPAREN>
-  |
-  <LPAREN> (AEXp() < MINUS> AEXp())+ <RPAREN> 
+  <LPAREN> (AEXp() sign() AEXp())+  < RPAREN>
+  
+ }
+ void sign(): { }
+ {
+   < PLUS>
+ |
+  < MINUS>
+ |
+ < COMPARE>
+ |
+ <AND>
  }
 //BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
 void BExp(): { }
@@ -110,10 +120,13 @@ void BExp(): { }
   | 
   "ff"
   |
-   <LPAREN> (AEXp() < COMPARE> AEXp())  < RPAREN>
-  |
-   <LPAREN> (AEXp() <AND> AEXp())  < RPAREN>
-  |
-  
+   <LPAREN> select()
+  | 
   <NOT> BExp()
+}
+void select(): { }
+{
+  (AEXp() < COMPARE> AEXp())  < RPAREN>
+ |
+  (BExp() <AND> BExp())  < RPAREN>
 }
