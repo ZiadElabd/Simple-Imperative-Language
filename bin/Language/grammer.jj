@@ -53,7 +53,11 @@ TOKEN : /* identifiers */
   	|
   	< VAR: <LETTER> (<LETTER>)* >
     |
-    < NUMBER: <DIGIT> (<DIGIT>)* > 
+    < NUMBER: <DIGIT> (<DIGIT>)* >
+  	|
+  	< TRUE: "tt" >
+ 	|
+ 	< FALSE: "ff" >  
 }
 
 
@@ -78,14 +82,16 @@ void parse():
 {}
 {
   	{ System.out.println("presed");}
-	< NUMBER >  < VAR >
+	BExp()
 	{ System.out.println("parsed correctly");}
 }
 
 /*void command():
 {}
 {
-	command() (< SEMICOLON > command())*
+  	< SKIP >
+ 	| 
+	command() [< SEMICOLON > command())] 
 	 
 }*/
 
@@ -112,9 +118,9 @@ void AEXp(): { }
 //BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
 void BExp(): { }
 {
-  "tt"
+  < TRUE >
   | 
-  "ff"
+  < FALSE >
   |
    <LPAREN> select()
   | 

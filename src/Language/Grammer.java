@@ -14,15 +14,16 @@ public class Grammer implements GrammerConstants {
 
   static final public void parse() throws ParseException {
           System.out.println("presed");
-    jj_consume_token(NUMBER);
-    jj_consume_token(VAR);
+    BExp();
           System.out.println("parsed correctly");
   }
 
 /*void command():
 {}
 {
-	command() (< SEMICOLON > command())*
+  	< SKIP >
+ 	| 
+	command() [< SEMICOLON > command())] 
 	 
 }*/
 
@@ -86,11 +87,11 @@ public class Grammer implements GrammerConstants {
 //BExp  →  tt | ff | (AExp == AExp) | ! BExp | (BExp ^ BExp)
   static final public void BExp() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 24:
-      jj_consume_token(24);
+    case TRUE:
+      jj_consume_token(TRUE);
       break;
-    case 25:
-      jj_consume_token(25);
+    case FALSE:
+      jj_consume_token(FALSE);
       break;
     case LPAREN:
       jj_consume_token(LPAREN);
@@ -117,9 +118,9 @@ public class Grammer implements GrammerConstants {
       AEXp();
       jj_consume_token(RPAREN);
       break;
+    case TRUE:
+    case FALSE:
     case NOT:
-    case 24:
-    case 25:
       BExp();
       jj_consume_token(AND);
       BExp();
@@ -148,7 +149,7 @@ public class Grammer implements GrammerConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x18020,0x18020,0x8e0000,0x3100020,0x3118020,};
+      jj_la1_0 = new int[] {0x18020,0x18020,0x2380000,0x460020,0x478020,};
    }
 
   /** Constructor with InputStream. */
