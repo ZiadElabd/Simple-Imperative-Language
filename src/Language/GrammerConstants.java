@@ -33,23 +33,21 @@ public interface GrammerConstants {
   /** RegularExpression Id. */
   int DIGIT = 15;
   /** RegularExpression Id. */
-  int t = 16;
+  int TF = 16;
   /** RegularExpression Id. */
-  int f = 17;
+  int PLUS = 17;
   /** RegularExpression Id. */
-  int PLUS = 18;
+  int MINUS = 18;
   /** RegularExpression Id. */
-  int MINUS = 19;
+  int COMPARE = 19;
   /** RegularExpression Id. */
-  int COMPARE = 20;
+  int NOT = 20;
   /** RegularExpression Id. */
-  int NOT = 21;
+  int EQUAL = 21;
   /** RegularExpression Id. */
-  int EQUAL = 22;
+  int ASSIGHN = 22;
   /** RegularExpression Id. */
-  int ASSIGHN = 23;
-  /** RegularExpression Id. */
-  int AND = 24;
+  int AND = 23;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -72,8 +70,7 @@ public interface GrammerConstants {
     "\"skip\"",
     "<LETTER>",
     "<DIGIT>",
-    "\"tt\"",
-    "\"ff\"",
+    "<TF>",
     "\"+\"",
     "\"-\"",
     "\"==\"",
