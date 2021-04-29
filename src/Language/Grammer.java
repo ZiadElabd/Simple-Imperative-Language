@@ -8,7 +8,7 @@ public class Grammer implements GrammerConstants {
 
     public static void main(String[] args) throws Exception {
       BufferedReader in = new BufferedReader(new FileReader("read.txt"));
-      Grammer grammer=new Grammer(in);
+      Grammer grammer=new Grammer(System.in);
       Grammer.parse();
     }
 
