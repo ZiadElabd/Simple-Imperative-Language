@@ -21,7 +21,9 @@ void words():
   int id=0;
   System.out.println(id+"id");
 }
-{
-
-  " { " " }"
+SKIP : {
+  " "
+| "\t"
+| "\n"
+| "\r"
 }
