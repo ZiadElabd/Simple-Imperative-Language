@@ -7,8 +7,8 @@ public class Grammer implements GrammerConstants {
 
     public static void main(String[] args) throws Exception {
       StringReader in=new StringReader("count 10");
-      Hello hello=new Hello(System.in);
-      Hello.words();
+       Grammer grammer=new Grammer(System.in);
+      Grammer.words();
     }
 
   static final public void words() throws ParseException {
