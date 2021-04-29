@@ -7,23 +7,83 @@ public class Grammer {
   
     public static void main(String[] args) throws Exception {
       StringReader in=new StringReader("count 10");
-       Grammer grammer=new Grammer(System.in);
-      Grammer.words();
+      Grammer grammer=new Grammer(System.in);
+      Grammer.parse();
     }
     
 }
 
 PARSER_END(Grammer)
 
-
-void words():
-{
-  int id=0;
-  System.out.println(id+"id");
-}
 SKIP : {
-  " "
-| "\t"
-| "\n"
-| "\r"
+	  " "
+	| "\t"
+	| "\n"
+	| "\r"
 }
+
+TOKEN : /* punctuation */
+{
+    < LPAREN: "(" >
+    |
+    < RPAREN: ")" >
+    |
+    < SEMICOLON: ";" >
+}
+
+TOKEN : /* keywords */
+{
+    < IF: "if" >
+    |
+    < THEN: "then" >
+    |
+    < ELSE: "else" >
+    |
+    < WHILE: "while" >
+    |
+    < DO: "do" >
+  	|
+  	< SKIP: "skip" > 
+
+}
+
+TOKEN : /* identifiers */
+{
+    < #LETTER: [ "a"-"f"] >
+    |
+    < #DIGIT: [ "0"-"9" ] >
+}
+
+
+TOKEN : /* operators */
+{
+    < PLUS: "+" >
+    |
+    < MINUS: "-" >
+    |
+    < COMPARE: "==" >
+    |
+    < NOT: "!" >
+  	|
+  	< EQUAL: "=" >
+ 	|
+ 	< ASSIGHN: ":">
+ 	|
+ 	< AND: "^"> 
+}
+
+void parse():
+{
+	command() <EOF>
+}
+
+command():
+{
+	< SKIP >
+	|
+	command() < SEMICOLON > command()
+	|
+	 
+}
+
+

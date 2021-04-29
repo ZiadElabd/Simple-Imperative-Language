@@ -7,7 +7,7 @@ public class Grammer implements GrammerConstants {
 
     public static void main(String[] args) throws Exception {
       StringReader in=new StringReader("count 10");
-       Grammer grammer=new Grammer(System.in);
+      Grammer grammer=new Grammer(System.in);
       Grammer.words();
     }
 
