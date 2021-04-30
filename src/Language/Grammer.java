@@ -22,6 +22,8 @@ public class Grammer implements GrammerConstants {
                         Grammer.parse();
                 }catch(Exception e) {
                         return false;
+                }catch(Error e) {
+                        return false;
                 }
 
                 return true;

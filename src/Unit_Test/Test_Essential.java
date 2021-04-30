@@ -27,24 +27,24 @@ public class Test_Essential {
     }
     
     @Test
-    public void test2() {  // valid case
+    public void test2() {  // invalid case
     	String test="tt ^ ff";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
-        assertTrue(Grammer.check(reader));
+        assertFalse(Grammer.check(reader));
     }
     
     @Test
-    public void test3() {   // valid case
+    public void test3() {   // invalid case
     	String test="(5 + 5)";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
-        assertTrue(Grammer.check(reader));
+        assertFalse(Grammer.check(reader));
     }
     
     @Test
-    public void test4() {   // valid case
+    public void test4() {   // invalid case
     	String test="(5 - 5)";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
-        assertTrue(Grammer.check(reader));
+        assertFalse(Grammer.check(reader));
     }
     
     @Test

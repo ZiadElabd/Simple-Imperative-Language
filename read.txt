@@ -1,1 +1,1 @@
-a := 5
+if true then a:=5 else skip
