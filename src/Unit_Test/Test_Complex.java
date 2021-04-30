@@ -18,22 +18,20 @@ import java.io.StringReader;
 
 public class Test_Complex {	
 	
+	 @Test
+	    public void test1() {  // invalid case
+	    	String test="a := 5 \n "
+	    			+ "if tt then a:=5 else skip";
+	    	BufferedReader reader = new BufferedReader(new StringReader(test));
+	        assertFalse(Grammer.check(reader));
+	    }
 	@Test
-    public void test1() {   // valid case
+    public void test2() {   // valid case
     	String test="a := 5; \n"
     			+ " if tt then a:=5 else skip";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
         assertTrue(Grammer.check(reader));
-    }
-    
-    @Test
-    public void test2() {  // invalid case
-    	String test="a := 5 \n "
-    			+ "if tt then a:=5 else skip";
-    	BufferedReader reader = new BufferedReader(new StringReader(test));
-        assertFalse(Grammer.check(reader));
-    }
-    
+    }  
     @Test
     public void test3() {   // valid case
     	String test=" a := 5; \n "
@@ -45,7 +43,7 @@ public class Test_Complex {
     @Test
     public void test4() {   // valid case
     	String test=" a := 5;  \n"
-    			+ "while ff do a:=5;skip";
+    			+ "while ff do a:=5;if (a==5) then a:=((b+5)+(c+4)) else a:=0";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
         assertTrue(Grammer.check(reader));
     }
@@ -55,6 +53,15 @@ public class Test_Complex {
     	String test="if tt then a:=5;\n"
     						 + "while ff do a:=5 "
     				+ "else  a:=5";
+    	BufferedReader reader = new BufferedReader(new StringReader(test));
+        assertTrue(Grammer.check(reader));
+    }
+    @Test
+    public void test6() {   // valid case
+    	String test="if tt then a:=5;\n"
+    			    + "while ff do a:=5 "
+    				+ "else  a:=5;"
+    				+ "if (a==2333) then f:=a else skip";
     	BufferedReader reader = new BufferedReader(new StringReader(test));
         assertTrue(Grammer.check(reader));
     }

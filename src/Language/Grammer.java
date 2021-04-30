@@ -124,7 +124,6 @@ public class Grammer implements GrammerConstants {
         AEXp();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LPAREN:
-        case SEMICOLON:
         case LETTER:
         case DIGIT:
           ;
@@ -135,10 +134,6 @@ public class Grammer implements GrammerConstants {
         }
       }
       jj_consume_token(RPAREN);
-      break;
-    case SEMICOLON:
-      jj_consume_token(SEMICOLON);
-      command();
       break;
     default:
       jj_la1[5] = jj_gen;
@@ -192,7 +187,6 @@ public class Grammer implements GrammerConstants {
   static final public void select() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case LPAREN:
-    case SEMICOLON:
     case LETTER:
     case DIGIT:
       AEXp();
@@ -213,31 +207,17 @@ public class Grammer implements GrammerConstants {
   }
 
   static final public void IfStatement() throws ParseException {
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case LPAREN:
-    case TF:
-    case NOT:
-      BExp();
-      jj_consume_token(THEN);
-      command();
-      jj_consume_token(ELSE);
-      command();
-      break;
-    case SEMICOLON:
-      jj_consume_token(SEMICOLON);
-      command();
-      break;
-    default:
-      jj_la1[9] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
-    }
+    BExp();
+    jj_consume_token(THEN);
+    Statement();
+    jj_consume_token(ELSE);
+    Statement();
   }
 
   static final public void WhileStatement() throws ParseException {
     BExp();
     jj_consume_token(DO);
-    command();
+    Statement();
   }
 
   static private boolean jj_initialized_once = false;
@@ -250,13 +230,13 @@ public class Grammer implements GrammerConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[10];
+  static final private int[] jj_la1 = new int[9];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x80,0xa900,0x10000,0x8000,0x180a0,0x180a0,0x8e0000,0x104020,0x11c0a0,0x1040a0,};
+      jj_la1_0 = new int[] {0x80,0xa900,0x10000,0x8000,0x18020,0x18020,0x8e0000,0x104020,0x11c020,};
    }
 
   /** Constructor with InputStream. */
@@ -277,7 +257,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -291,7 +271,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -308,7 +288,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -318,7 +298,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -334,7 +314,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -343,7 +323,7 @@ public class Grammer implements GrammerConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 10; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 9; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -399,7 +379,7 @@ public class Grammer implements GrammerConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 9; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

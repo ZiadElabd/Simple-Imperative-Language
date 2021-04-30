@@ -146,8 +146,6 @@ void AEXp():
    VAR() 
   |
   <LPAREN> (AEXp() sign() AEXp())+  < RPAREN>
-  | 
-  < SEMICOLON>  command()
  }
  void sign(): { }
  {
@@ -182,14 +180,12 @@ void select(): { }
 void IfStatement() :
 {}
 {
-     BExp() <THEN> command()  <ELSE> command()
-   |
-   < SEMICOLON>  command()
+     BExp() <THEN> Statement()  <ELSE> Statement()
 }
 
 void WhileStatement() :
 {}
 {
-     BExp() <DO> command()
+     BExp() <DO> Statement()
 }
 
