@@ -49,11 +49,11 @@ TOKEN : /* keywords */
 
 TOKEN : /* identifiers */
 {
+  	< TF :"ff" | "tt">
+ 	| 
     <LETTER: (["a"-"f"])+ >
     |
     <DIGIT: (["0"-"9"])+ > 
-  	|
-  	< TF :"ff" | "tt">
 }
 
 

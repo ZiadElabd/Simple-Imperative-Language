@@ -29,11 +29,11 @@ public interface GrammerConstants {
   /** RegularExpression Id. */
   int SKI = 13;
   /** RegularExpression Id. */
-  int LETTER = 14;
+  int TF = 14;
   /** RegularExpression Id. */
-  int DIGIT = 15;
+  int LETTER = 15;
   /** RegularExpression Id. */
-  int TF = 16;
+  int DIGIT = 16;
   /** RegularExpression Id. */
   int PLUS = 17;
   /** RegularExpression Id. */
@@ -68,9 +68,9 @@ public interface GrammerConstants {
     "\"while\"",
     "\"do\"",
     "\"skip\"",
+    "<TF>",
     "<LETTER>",
     "<DIGIT>",
-    "<TF>",
     "\"+\"",
     "\"-\"",
     "\"==\"",

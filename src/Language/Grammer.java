@@ -239,7 +239,7 @@ public class Grammer implements GrammerConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x80,0x6900,0x8000,0x4000,0xc0a0,0xc0a0,0x8e0000,0x110020,0x11c0a0,0x1100a0,};
+      jj_la1_0 = new int[] {0x80,0xa900,0x10000,0x8000,0x180a0,0x180a0,0x8e0000,0x104020,0x11c0a0,0x1040a0,};
    }
 
   /** Constructor with InputStream. */
