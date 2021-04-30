@@ -10,14 +10,17 @@ import static org.junit.Assert.*;
  * @author Ziad Albana
  */
 public class Test_Complex {	
-    @Test
+   /*
+	@Test
     public void testEnqueue() {
         
     }
     
     
-    @Test (expected=java.lang.NullPointerException.class)
+    @Test (expected= Language.TokenMgrError.class)
+    
     public void testDequeue() {
+    	
     	
     }
     
@@ -25,6 +28,6 @@ public class Test_Complex {
     public void testFront() {
           
     }
-
+*/
     
 }

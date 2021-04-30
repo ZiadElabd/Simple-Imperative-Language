@@ -9,7 +9,18 @@ public class Grammer implements GrammerConstants {
     public static void main(String[] args) throws Exception {
       BufferedReader in = new BufferedReader(new FileReader("read.txt"));
       Grammer grammer=new Grammer(in);
-      Grammer.parse();
+      grammer.parse();
+    }
+    public static boolean check(BufferedReader reader) throws ParseException{
+        //try {
+          new Grammer(reader);
+          Grammer.parse();
+
+       /* }catch(Exception e) {
+          return false;
+
+        }*/
+     return true;
     }
 
   static final public void parse() throws ParseException {

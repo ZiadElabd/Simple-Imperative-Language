@@ -9,7 +9,18 @@ public class Grammer {
     public static void main(String[] args) throws Exception {
       BufferedReader in = new BufferedReader(new FileReader("read.txt"));
       Grammer grammer=new Grammer(in);
-      Grammer.parse();
+      grammer.parse();
+    }
+    public static boolean check(BufferedReader reader) throws ParseException{
+        //try {
+          new Grammer(reader);
+          Grammer.parse();
+          
+       /* }catch(Exception e) {
+          return false;
+
+        }*/
+     return true;
     }
     
 }
@@ -79,7 +90,7 @@ void parse():
 {
   	{ System.out.println("presed");}
 	Statement()  <EOF> 
-	{ System.out.println("parsed correctly");}
+	{ System.out.println("parsed correctly");}	  
 }
 
 void Statement():
